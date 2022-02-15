@@ -26,17 +26,7 @@ Check the README.md file for more information.
 
 """
 
-from pkg.main.cli_arg_parser import cli_arg_parser
-from pkg.main.main import main
+from pkg.main.main import cli_main
 
 if __name__ == "__main__":
-    args = cli_arg_parser()
-    main(architecture=args.architecture,
-         clean=args.clean,
-         mirror_url=args.mirror_url,
-         number=args.number,
-         output_dir=args.output_dir,
-         reuse_contents_file=args.reuse_contents_file,
-         sort_descending=args.sort_descending,
-         include_udeb=args.include_udeb,
-         )
+    cli_main()

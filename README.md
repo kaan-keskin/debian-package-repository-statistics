@@ -21,8 +21,73 @@ An example output could be:
 The following Debian mirror will be used as a default package repository:
 http://ftp.uk.debian.org/debian/dists/stable/main/.
 
-## Usage
+## Installation with SetupTools
 
+```shell
+$ python setup.py install
+```
+```
+running install
+running bdist_egg
+running egg_info
+writing dprs.egg-info/PKG-INFO
+writing dependency_links to dprs.egg-info/dependency_links.txt
+writing entry points to dprs.egg-info/entry_points.txt
+writing top-level names to dprs.egg-info/top_level.txt
+reading manifest file 'dprs.egg-info/SOURCES.txt'
+adding license file 'LICENSE'
+writing manifest file 'dprs.egg-info/SOURCES.txt'
+installing library code to build/bdist.linux-x86_64/egg
+running install_lib
+running build_py
+creating build/bdist.linux-x86_64/egg
+creating build/bdist.linux-x86_64/egg/pkg
+copying build/lib/pkg/__init__.py -> build/bdist.linux-x86_64/egg/pkg
+creating build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/cli_arg_parser.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/main.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/get_contents_file_url.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/get_contents_file_list.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/exceptions.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/download_contents_file.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/parse_contents_file.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/default_variables.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/__init__.py -> build/bdist.linux-x86_64/egg/pkg/main
+copying build/lib/pkg/main/__main__.py -> build/bdist.linux-x86_64/egg/pkg/main
+byte-compiling build/bdist.linux-x86_64/egg/pkg/__init__.py to __init__.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/cli_arg_parser.py to cli_arg_parser.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/main.py to main.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/get_contents_file_url.py to get_contents_file_url.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/get_contents_file_list.py to get_contents_file_list.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/exceptions.py to exceptions.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/download_contents_file.py to download_contents_file.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/parse_contents_file.py to parse_contents_file.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/default_variables.py to default_variables.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/__init__.py to __init__.cpython-39.pyc
+byte-compiling build/bdist.linux-x86_64/egg/pkg/main/__main__.py to __main__.cpython-39.pyc
+creating build/bdist.linux-x86_64/egg/EGG-INFO
+copying dprs.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying dprs.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying dprs.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying dprs.egg-info/entry_points.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+copying dprs.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
+zip_safe flag not set; analyzing archive contents...
+creating 'dist/dprs-1.0-py3.9.egg' and adding 'build/bdist.linux-x86_64/egg' to it
+removing 'build/bdist.linux-x86_64/egg' (and everything under it)
+Processing dprs-1.0-py3.9.egg
+Removing /home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0-py3.9.egg
+Copying dprs-1.0-py3.9.egg to /home/kaan/anaconda3/lib/python3.9/site-packages
+dprs 1.0 is already the active version in easy-install.pth
+Installing dprs script to /home/kaan/anaconda3/bin
+
+Installed /home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0-py3.9.egg
+Processing dependencies for dprs==1.0
+Finished processing dependencies for dprs==1.0
+```
+
+## Usages
+
+### Usage without Installation
 Give the execute permission for dprs.py file and run it:
 
 ```shell
@@ -34,6 +99,12 @@ Or, you can directly run it with the python command:
 
 ```shell
 $ python dprs.py --help
+```
+
+### Usage with Installation
+
+```shell
+$ dprs --help
 ```
 
 ### CLI Help Output
@@ -149,7 +220,7 @@ Order           Package Name                                   Number of Files
 20              kernel/linux-image-5.10.0-10-arm64                        3748
 ```
 
-#### CPU Architecture:i386 Statistics with udeb Packages
+#### CPU Architecture:i386 Statistics with UDEB Packages
 
 ```shell
 $ ./dprs.py -u i386
@@ -213,7 +284,7 @@ Order           Package Name                                         Number of F
 ### Clean Output Folder
 
 ```shell
-$ ./dprs.py -o
+$ ./dprs.py -c
 ```
 ```shell
 $ ls
@@ -227,3 +298,5 @@ $ ./dprs.py -c
 $ ls          
 dprs.py  LICENSE  pkg  README.md
 ```
+
+

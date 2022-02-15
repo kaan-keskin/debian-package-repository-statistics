@@ -8,6 +8,7 @@ import os
 # https://docs.python.org/3/library/shutil.html
 import shutil
 
+from pkg.main.cli_arg_parser import cli_arg_parser
 from pkg.main.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_NUMBER, DEFAULT_OUTPUT_DIR, \
     DEFAULT_REUSE_CONTENTS_FILE, DEFAULT_SORT_DESCENDING, DEFAULT_INCLUDE_UDEB
 from pkg.main.download_contents_file import download_contents_file
@@ -86,3 +87,16 @@ def main(architecture: str = DEFAULT_ARCHITECTURE,
         print(f"{ix+1:<10}\t{package:<40}\t{len(complete_package_data[package]):>20}")
         if ix+1 == number:
             break
+
+
+def cli_main():
+    args = cli_arg_parser()
+    main(architecture=args.architecture,
+         clean=args.clean,
+         mirror_url=args.mirror_url,
+         number=args.number,
+         output_dir=args.output_dir,
+         reuse_contents_file=args.reuse_contents_file,
+         sort_descending=args.sort_descending,
+         include_udeb=args.include_udeb,
+         )
