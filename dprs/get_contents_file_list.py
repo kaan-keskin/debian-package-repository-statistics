@@ -5,8 +5,8 @@
 import urllib.request
 from urllib.error import URLError
 
-from pkg.main.default_variables import DEFAULT_MIRROR_URL
-from pkg.main.exceptions import *
+from dprs.default_variables import DEFAULT_MIRROR_URL
+from dprs.exceptions import MirrorURLNotAccessible
 
 
 def get_contents_file_list(mirror_url: str = DEFAULT_MIRROR_URL) -> list:

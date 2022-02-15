@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from pkg.main.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_INCLUDE_UDEB
-from pkg.main.get_contents_file_list import get_contents_file_list
+from dprs.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_INCLUDE_UDEB
+from dprs.get_contents_file_list import get_contents_file_list
 
 
 def get_contents_file_url(architecture: str = DEFAULT_ARCHITECTURE,

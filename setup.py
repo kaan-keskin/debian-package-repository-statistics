@@ -18,7 +18,7 @@ setuptools.setup(
     description="Debian Package Repository Statistics (DPRS) Tool",
     entry_points={
         'console_scripts': [
-            'dprs=pkg.main:cli_main',
+            'dprs=dprs:cli_main',
         ],
     },
     long_description=long_description,
@@ -26,5 +26,5 @@ setuptools.setup(
     name="dprs",
     packages=setuptools.find_packages(),
     python_requires='>=3.6',
-version="1.0",
+    version="1.0",
 )

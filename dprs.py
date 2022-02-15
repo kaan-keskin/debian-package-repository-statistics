@@ -26,7 +26,7 @@ Check the README.md file for more information.
 
 """
 
-from pkg.main.main import cli_main
+from dprs import cli_main
 
 if __name__ == "__main__":
     cli_main()

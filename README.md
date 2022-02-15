@@ -21,7 +21,7 @@ An example output could be:
 The following Debian mirror will be used as a default package repository:
 http://ftp.uk.debian.org/debian/dists/stable/main/.
 
-## Installlation Options
+## Installation Options
 
 ### Installation with PIP (Recommended)
 
@@ -66,6 +66,11 @@ and take a look at the list this produces.
 
 ```shell
 $ python setup.py install --record installation-files.txt
+```
+```shell
+$ cat installation-files.txt 
+/home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0-py3.9.egg
+/home/kaan/anaconda3/bin/dprs
 ```
 
 Note: Avoid this option!
@@ -273,7 +278,7 @@ $ dprs.py -c
 ```
 ```shell
 $ ls
-dprs.py  LICENSE  outputs  pkg  README.md
+dprs.py  LICENSE  outputs  dprs  README.md
 
 $ ls outputs 
 Contents-amd64  Contents-amd64.gz  Contents-arm64  Contents-arm64.gz  Contents-i386  Contents-i386.gz  Contents-udeb-amd64  Contents-udeb-amd64.gz  Contents-udeb-i386  Contents-udeb-i386.gz
@@ -284,4 +289,84 @@ $ ls
 dprs.py  LICENSE  pkg  README.md
 ```
 
+## Tests
+
+### Unit Testing with pytest
+
+```shell
+$ pytest
+```
+```
+==================================================== test session starts =====================================================
+platform linux -- Python 3.10.2, pytest-6.2.4, py-1.11.0, pluggy-0.13.1
+rootdir: ~/debian-package-repository-statistics
+plugins: flaky-3.7.0, timeout-1.4.2, cov-3.0.0
+collected 5 items                                                                                                            
+
+dprs/tests/test_download_contents_file.py .                                                                            [ 20%]
+dprs/tests/test_get_contents_file_list.py .                                                                            [ 40%]
+dprs/tests/test_get_contents_file_url.py ..                                                                            [ 80%]
+dprs/tests/test_parse_contents_file.py .                                                                               [100%]
+
+=============================================== 5 passed in 200.29s (0:03:20) ================================================
+```
+
+### Profiling with cProfile
+
+```shell
+$ dprs -p amd64
+```
+```
+...
+         6098714 function calls (6082983 primitive calls) in 94.533 seconds
+
+   Ordered by: call count
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+  1476353    0.086    0.000    0.086    0.000 {method 'append' of 'list' objects}
+  1450128    0.115    0.000    0.115    0.000 {method 'split' of 'str' objects}
+  1450116    0.102    0.000    0.102    0.000 {method 'strip' of 'str' objects}
+  1450104    0.251    0.000    0.251    0.000 {method 'rsplit' of 'str' objects}
+77190/77179    0.005    0.000    0.005    0.000 {built-in method builtins.len}
+    29940    0.004    0.000    0.006    0.000 ./git-repos/debian-package-repository-statistics/dprs/main.py:86(<lambda>)
+ 15698/15    0.101    0.000   92.144    6.143 {method 'read' of '_io.BufferedReader' objects}
+...
+```
+
+### Profiling with py-spy
+
+```shell
+$ pip install py-spy
+
+$ py-spy top -- python dprs.py amd64
+```
+```
+Collecting samples from 'python dprs.py amd64' (python v3.9.7)
+Total Samples 1300
+GIL: 6.00%, Active: 50.00%, Threads: 1
+
+  %Own   %Total  OwnTime  TotalTime  Function (filename:line)                                                                                                                                                                                                                                                  
+  0.00%   0.00%   0.580s    0.580s   readinto (socket.py:704)
+ 28.00%  28.00%   0.280s    0.280s   read (gzip.py:495)
+  9.00%  45.00%   0.090s    0.450s   read (gzip.py:300)
+  6.00%   6.00%   0.060s    0.060s   _add_read_data (gzip.py:514)
+  2.00%   2.00%   0.020s    0.020s   download_contents_file (dprs/download_contents_file.py:71)
+  1.00%   1.00%   0.010s    0.010s   read (gzip.py:473)
+  0.00%   0.00%   0.010s    0.590s   _safe_read (http/client.py:625)
+  1.00%   1.00%   0.010s    0.010s   read (gzip.py:96)
+  1.00%   1.00%   0.010s    0.010s   download_contents_file (dprs/download_contents_file.py:65)
+  0.00%   0.00%   0.010s    0.010s   getaddrinfo (socket.py:954)
+  1.00%   1.00%   0.010s    0.010s   parse_contents_file (dprs/parse_contents_file.py:18)
+  1.00%  49.00%   0.010s     1.08s   main (dprs/main.py:75)
+  0.00%   1.00%   0.000s    0.010s   main (dprs/main.py:80)
+  0.00%   0.00%   0.000s    0.010s   open (urllib/request.py:517)
+  0.00%   0.00%   0.000s    0.010s   _send_output (http/client.py:1034)
+  0.00%   6.00%   0.000s    0.060s   read (gzip.py:509)
+  0.00%   0.00%   0.000s    0.010s   _open (urllib/request.py:534)
+  0.00%   0.00%   0.000s    0.010s   create_connection (socket.py:823)
+  0.00%   1.00%   0.000s    0.010s   read (gzip.py:493)
+  0.00%   0.00%   0.000s    0.010s   urlopen (urllib/request.py:214)
+  0.00%   0.00%   0.000s    0.010s   send (http/client.py:974)
+  0.00%   0.00%   0.000s    0.590s   download_contents_file (dprs/download_contents_file.py:63)
+```
 

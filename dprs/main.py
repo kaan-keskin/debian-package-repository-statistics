@@ -8,14 +8,19 @@ import os
 # https://docs.python.org/3/library/shutil.html
 import shutil
 
-from pkg.main.cli_arg_parser import cli_arg_parser
-from pkg.main.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_NUMBER, DEFAULT_OUTPUT_DIR, \
+# https://docs.python.org/3/library/profile.html#module-cProfile
+import cProfile
+# https://docs.python.org/3/library/profile.html#module-pstats
+import pstats
+
+from dprs.cli_arg_parser import cli_arg_parser
+from dprs.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_NUMBER, DEFAULT_OUTPUT_DIR, \
     DEFAULT_REUSE_CONTENTS_FILE, DEFAULT_SORT_DESCENDING, DEFAULT_INCLUDE_UDEB
-from pkg.main.download_contents_file import download_contents_file
-from pkg.main.get_contents_file_list import get_contents_file_list
-from pkg.main.get_contents_file_url import get_contents_file_url
-from pkg.main.parse_contents_file import parse_contents_file
-from pkg.main.exceptions import *
+from dprs.download_contents_file import download_contents_file
+from dprs.exceptions import ArchitectureNotFound
+from dprs.get_contents_file_list import get_contents_file_list
+from dprs.get_contents_file_url import get_contents_file_url
+from dprs.parse_contents_file import parse_contents_file
 
 
 def main(architecture: str = DEFAULT_ARCHITECTURE,
@@ -27,7 +32,7 @@ def main(architecture: str = DEFAULT_ARCHITECTURE,
          sort_descending: bool = DEFAULT_SORT_DESCENDING,
          include_udeb: bool = DEFAULT_INCLUDE_UDEB) -> None:
     """
-    This is the main function that manages this application.
+    This is the dprs function that manages this application.
 
     Arguments:
         architecture: CPU Architecture for the Debian Contents-*.gz file.
@@ -91,6 +96,12 @@ def main(architecture: str = DEFAULT_ARCHITECTURE,
 
 def cli_main():
     args = cli_arg_parser()
+
+    # Decide Profiler Usage
+    if args.use_profiler:
+        profiler = cProfile.Profile()
+        profiler.enable()
+
     main(architecture=args.architecture,
          clean=args.clean,
          mirror_url=args.mirror_url,
@@ -100,3 +111,9 @@ def cli_main():
          sort_descending=args.sort_descending,
          include_udeb=args.include_udeb,
          )
+
+    # Show Profiler Statistics
+    if args.use_profiler:
+        profiler.disable()
+        stats = pstats.Stats(profiler).sort_stats('ncalls')
+        stats.print_stats()

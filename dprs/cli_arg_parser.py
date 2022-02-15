@@ -4,8 +4,8 @@
 # https://docs.python.org/3/library/argparse.html
 import argparse
 
-from pkg.main.default_variables import DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, DEFAULT_NUMBER, DEFAULT_OUTPUT_DIR, \
-    DEFAULT_ARCHITECTURE_OPTIONS
+from dprs.default_variables import DEFAULT_ARCHITECTURE_OPTIONS, DEFAULT_ARCHITECTURE, DEFAULT_MIRROR_URL, \
+    DEFAULT_NUMBER, DEFAULT_OUTPUT_DIR
 
 
 def cli_arg_parser():
@@ -71,6 +71,15 @@ def cli_arg_parser():
         help=(
             "Directory to store downloaded contents. "
             "Default value: " + DEFAULT_OUTPUT_DIR
+        )
+    )
+    parser.add_argument(
+        "-p",
+        "--use_profiler",
+        action="store_true",
+        help=(
+            "Uses cProfile for debugging purpose. "
+            "Default value: False "
         )
     )
     parser.add_argument(

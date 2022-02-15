@@ -16,7 +16,7 @@ import urllib
 # https://docs.python.org/3/library/gzip.html
 import gzip
 
-from pkg.main.exceptions import ContentsFileURLNotFound
+from dprs.exceptions import ContentsFileURLNotFound
 
 
 def download_contents_file(contents_file_url: str = None,
