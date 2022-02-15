@@ -4,7 +4,7 @@
 Debian Package Repository Statistics (DPRS) Tool
 
 Debian uses *deb packages to deploy and upgrade software.
-The packages are stored in repositories and each repository contains the "Contents index".
+The packages are stored in repositories and each repository contains the "Contents Index".
 The format of that file is well described here: https://wiki.debian.org/RepositoryFormat#A.22Contents.22_indices
 
 This tool takes the architecture (amd64, arm64, i386 etc.) as an argument,

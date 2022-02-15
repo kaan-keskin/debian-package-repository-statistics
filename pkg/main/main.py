@@ -82,7 +82,7 @@ def main(architecture: str = DEFAULT_ARCHITECTURE,
     # Print the output
     for ix, package in enumerate(package_list):
         if ix == 0:
-            print(f"{'No.':<8}\t{'Package Name':<40}\tNumber of File")
-        print(f"{ix+1:<10}\t{package:<50}\t{len(complete_package_data[package])}")
+            print(f"{'Order':<10}\t{'Package Name':<40}\t{'Number of Files':>20}")
+        print(f"{ix+1:<10}\t{package:<40}\t{len(complete_package_data[package]):>20}")
         if ix+1 == number:
             break
