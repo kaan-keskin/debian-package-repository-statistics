@@ -21,69 +21,54 @@ An example output could be:
 The following Debian mirror will be used as a default package repository:
 http://ftp.uk.debian.org/debian/dists/stable/main/.
 
-## Installation with SetupTools
+## Installlation Options
+
+### Installation with PIP (Recommended)
 
 ```shell
-$ python setup.py install
+$ pip install .
 ```
-```
-running install
-running bdist_egg
-running egg_info
-writing dprs.egg-info/PKG-INFO
-writing dependency_links to dprs.egg-info/dependency_links.txt
-writing entry points to dprs.egg-info/entry_points.txt
-writing top-level names to dprs.egg-info/top_level.txt
-reading manifest file 'dprs.egg-info/SOURCES.txt'
-adding license file 'LICENSE'
-writing manifest file 'dprs.egg-info/SOURCES.txt'
-installing library code to build/bdist.linux-x86_64/egg
-running install_lib
-running build_py
-creating build/bdist.linux-x86_64/egg
-creating build/bdist.linux-x86_64/egg/pkg
-copying build/lib/pkg/__init__.py -> build/bdist.linux-x86_64/egg/pkg
-creating build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/cli_arg_parser.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/main.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/get_contents_file_url.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/get_contents_file_list.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/exceptions.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/download_contents_file.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/parse_contents_file.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/default_variables.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/__init__.py -> build/bdist.linux-x86_64/egg/pkg/main
-copying build/lib/pkg/main/__main__.py -> build/bdist.linux-x86_64/egg/pkg/main
-byte-compiling build/bdist.linux-x86_64/egg/pkg/__init__.py to __init__.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/cli_arg_parser.py to cli_arg_parser.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/main.py to main.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/get_contents_file_url.py to get_contents_file_url.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/get_contents_file_list.py to get_contents_file_list.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/exceptions.py to exceptions.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/download_contents_file.py to download_contents_file.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/parse_contents_file.py to parse_contents_file.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/default_variables.py to default_variables.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/__init__.py to __init__.cpython-39.pyc
-byte-compiling build/bdist.linux-x86_64/egg/pkg/main/__main__.py to __main__.cpython-39.pyc
-creating build/bdist.linux-x86_64/egg/EGG-INFO
-copying dprs.egg-info/PKG-INFO -> build/bdist.linux-x86_64/egg/EGG-INFO
-copying dprs.egg-info/SOURCES.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
-copying dprs.egg-info/dependency_links.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
-copying dprs.egg-info/entry_points.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
-copying dprs.egg-info/top_level.txt -> build/bdist.linux-x86_64/egg/EGG-INFO
-zip_safe flag not set; analyzing archive contents...
-creating 'dist/dprs-1.0-py3.9.egg' and adding 'build/bdist.linux-x86_64/egg' to it
-removing 'build/bdist.linux-x86_64/egg' (and everything under it)
-Processing dprs-1.0-py3.9.egg
-Removing /home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0-py3.9.egg
-Copying dprs-1.0-py3.9.egg to /home/kaan/anaconda3/lib/python3.9/site-packages
-dprs 1.0 is already the active version in easy-install.pth
-Installing dprs script to /home/kaan/anaconda3/bin
 
-Installed /home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0-py3.9.egg
-Processing dependencies for dprs==1.0
-Finished processing dependencies for dprs==1.0
 ```
+Processing ~/debian-package-repository-statistics
+Building wheels for collected packages: dprs
+  Building wheel for dprs (setup.py) ... done
+  Created wheel for dprs: filename=dprs-1.0-py3-none-any.whl size=12082 sha256=cabba4818b27aa6c6d606333d4108fa86dfb130fcff460593b0a67dca9cdaaeb
+  Stored in directory: ~/.cache/pip/wheels/eb/61/37/15310951587be91d6a793dabcdf29a4d0da4c7d81b70b2105b
+Successfully built dprs
+Installing collected packages: dprs
+Successfully installed dprs-1.0
+```
+
+### Uninstallation with PIP (Recommended)
+
+```shell
+$ pip uninstall dprs
+```
+
+```
+Found existing installation: dprs 1.0
+Uninstalling dprs-1.0:
+  Would remove:
+    /home/kaan/anaconda3/bin/dprs
+    /home/kaan/anaconda3/lib/python3.9/site-packages/dprs-1.0.dist-info/*
+    /home/kaan/anaconda3/lib/python3.9/site-packages/pkg/*
+Proceed (Y/n)? y
+  Successfully uninstalled dprs-1.0
+```
+
+### Installation with SetupTools
+
+You need to remove all files manually, and also undo any other stuff that installation did manually.
+
+If you don't know the list of all files, you can reinstall it with the --record option, 
+and take a look at the list this produces.
+
+```shell
+$ python setup.py install --record installation-files.txt
+```
+
+Note: Avoid this option!
 
 ## Usages
 
@@ -110,7 +95,7 @@ $ dprs --help
 ### CLI Help Output
 
 ```shell
-$ ./dprs.py --help
+$ dprs.py --help
 ```
 ```
 usage: dprs.py [-h] [-c] [-m MIRROR_URL] [-n NUMBER] [-o OUTPUT_DIR] [-r] [-s] [-u] [{amd64,arm64,armel,armhf,i386,mips64el,mipsel,ppc64el,s390x,None}]
@@ -143,7 +128,7 @@ optional arguments:
 #### CPU Architecture:amd64 Top 10 Statistics
 
 ```shell
-$ ./dprs.py amd64
+$ dprs.py amd64
 ```
 ```
 ./debian-package-repository-statistics/outputs/Contents-amd64
@@ -163,7 +148,7 @@ Order           Package Name                                   Number of Files
 #### CPU Architecture:amd64 Top 20 Statistics For UDEB Packages
 
 ```shell
-$ ./dprs.py -u -n 20 amd64
+$ dprs.py -u -n 20 amd64
 ```
 ```
 ./debian-package-repository-statistics/outputs/Contents-amd64
@@ -193,7 +178,7 @@ Order           Package Name                                   Number of Files
 #### CPU Architecture:arm64 Top 20 Statistics
 
 ```shell
-$ ./dprs.py -n 20 arm64
+$ dprs.py -n 20 arm64
 ```
 ```
 ./debian-package-repository-statistics/outputs/Contents-arm64
@@ -223,7 +208,7 @@ Order           Package Name                                   Number of Files
 #### CPU Architecture:i386 Statistics with UDEB Packages
 
 ```shell
-$ ./dprs.py -u i386
+$ dprs.py -u i386
 ```
 ```
 ./debian-package-repository-statistics/outputs/Contents-i386
@@ -243,7 +228,7 @@ Order           Package Name                                   Number of Files
 ### Reuse Downloaded Contents-*.gz File
 
 ```shell
-$ ./dprs.py -r amd64
+$ dprs.py -r amd64
 ```
 ```
 ./debian-package-repository-statistics/outputs/Contents-amd64
@@ -264,7 +249,7 @@ Order           Package Name                                   Number of Files
 ### Use Different Output Folder
 
 ```shell
-$ ./dprs.py -o /tmp amd64
+$ dprs.py -o /tmp amd64
 ```
 ```
 /tmp/Contents-amd64
@@ -284,7 +269,7 @@ Order           Package Name                                         Number of F
 ### Clean Output Folder
 
 ```shell
-$ ./dprs.py -c
+$ dprs.py -c
 ```
 ```shell
 $ ls
@@ -293,7 +278,7 @@ dprs.py  LICENSE  outputs  pkg  README.md
 $ ls outputs 
 Contents-amd64  Contents-amd64.gz  Contents-arm64  Contents-arm64.gz  Contents-i386  Contents-i386.gz  Contents-udeb-amd64  Contents-udeb-amd64.gz  Contents-udeb-i386  Contents-udeb-i386.gz
 
-$ ./dprs.py -c           
+$ dprs.py -c           
 
 $ ls          
 dprs.py  LICENSE  pkg  README.md
